@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Details about the student</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div class="text-center">
+        <h3>Information about student</h3>
+    </div>
+   <!-- <div>[[${student.id}]]</div> -->
+    <table class="table table-bordered">
+        <!--        шапка таблицы-->
+        <thead>
+        <tr>
+            <td class="table-white">ID</td>
+            <td>[[${student.id}]]</td>
+        </tr>
+        <tr>
+            <td class="table-white">First Name</td>
+            <td>[[${student.firstName}]]</td>
+        </tr>
+        <tr>
+            <td class="table-white">Last Name</td>
+            <td>[[${student.lastName}]]</td>
+        </tr>
+        </thead>
+</body>
+</html>
