@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <title>Details about the group</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <nav th:insert="/layout/layouts.html :: navs"></nav>
+        <div class="text-center">
+          <h3>Information about group</h3>
+        </div>
+    <table class="table table-bordered">
+      <!--        шапка таблицы-->
+      <thead>
+      <tr>
+        <td class="table-white">ID</td>
+        <td>[[${group.id}]]</td>
+      </tr>
+      <tr>
+        <td class="table-white">Group Name</td>
+        <td>[[${group.groupName}]]</td>
+      </tr>
+      </thead>
+    </table>
+
+</body>
+</html>

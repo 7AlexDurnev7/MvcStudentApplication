@@ -6,6 +6,31 @@
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body>
+
+<!-- фрагмент header -->
+<div th:fragment="navs">
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" th:href="@{/students}">Students</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/groups}">Groups</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/subjects}">Subjects</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/marks}">Marks</a>
+        </li>
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" th:action="@{/logout}" method="post">Log out</a>-->
+<!--        </li>-->
+        <form th:action="@{/logout}" method="post">
+            <button>Log out</button>
+        </form>
+    </ul>
+</div>
+
  <!-- фрагмент footer -->
 <div class="container-fluid text-center fixed-bottom text-bg-dark " th:fragment="footer">
     <h3>Created by Durnev Alex 2022 &copy;</h3></div>

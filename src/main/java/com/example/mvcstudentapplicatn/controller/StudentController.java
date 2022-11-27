@@ -1,6 +1,9 @@
 package com.example.mvcstudentapplicatn.controller;
 
+import com.example.mvcstudentapplicatn.controller.filter.StudentNameFilter;
+import com.example.mvcstudentapplicatn.db.entity.Group;
 import com.example.mvcstudentapplicatn.db.entity.Student;
+import com.example.mvcstudentapplicatn.service.GroupService;
 import com.example.mvcstudentapplicatn.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +19,13 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    private StudentService service;
+    private StudentService service; // сервис студентов
+
+    @Autowired
+    private StudentNameFilter containsFilter;   // объект фильтра
+
+    @Autowired
+    private GroupService groupService; // сервис групп
 
     // обработчик на получение страницы со списком всех студентов
     @GetMapping("/students")
@@ -30,6 +39,9 @@ public class StudentController {
     @GetMapping("/students/new")
     public String showNewStudentForm(Model model) {
         model.addAttribute("student", new Student());
+        // добавим существующие группы в контекст
+        List<Group> groups = groupService.listAllGroups(); // список всех групп
+        model.addAttribute("groupsList", groups); // добавить в контекст представления
         return "student-form";
     }
 
@@ -61,6 +73,7 @@ public class StudentController {
         // ВАЖНО: при возврате представления указывается имя представления
         return "student-update";
     }
+
     // обработчик для изменения данных о пользователе
     @PostMapping("/students/update")
     public String updateStudent(Student student, RedirectAttributes ra) {
@@ -78,5 +91,13 @@ public class StudentController {
         Student student = service.getStudentById(id);
         model.addAttribute("student", student);
         return "student-details";
+    }
+
+    @PostMapping("/students")
+    public String showFilteredStudents(StudentNameFilter filter, Model model) {
+        List<Student> studentList = filter.getFilteredStudents(service);
+        model.addAttribute("studentsList", studentList);
+        model.addAttribute("containsFilter", filter);
+        return "student-list";
     }
 }

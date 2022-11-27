@@ -12,6 +12,7 @@ import java.util.Optional;
 public class StudentService {
     @Autowired
     private StudentsRepository repository;  // репозиторий
+
     // получить всех студентов через репозиторий
     public List<Student> listAllStudents() {
         return (List<Student>) repository.findAll();
@@ -39,6 +40,15 @@ public class StudentService {
     // обновить поля студента
     public Student updateStudent (Student student) {
         return repository.save(student);
+    }
 
+    // получения студентов по строке
+    public List<Student> findByContains(String match) {
+        if (match == null || match.equals(""))
+            return (List<Student>)repository.findAll();
+        return ((List<Student>)repository.findAll())
+                .stream()
+                .filter(s -> s.getFirstName().contains(match) || s.getLastName().contains(match))
+                .toList();
     }
 }

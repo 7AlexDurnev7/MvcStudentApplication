@@ -12,11 +12,19 @@ public class Group {
     @Column(nullable = false, length = 50)
     private String groupName;
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", cascade = {CascadeType.PERSIST})
     private Set<Student> students;
 
     public Integer getId() {
         return id;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 
     public void setId(Integer id) {

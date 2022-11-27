@@ -6,10 +6,13 @@
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body>
+
+<nav th:insert="/layout/layouts.html :: navs"></nav>
     <div class="text-center">
         <h3>Information about student</h3>
     </div>
    <!-- <div>[[${student.id}]]</div> -->
+
     <table class="table table-bordered">
         <!--        шапка таблицы-->
         <thead>
@@ -26,5 +29,6 @@
             <td>[[${student.lastName}]]</td>
         </tr>
         </thead>
+    </table>
 </body>
 </html>

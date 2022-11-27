@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update group</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+  <h1>Update group</h1>
+  <!-- форма обновления студента -->
+  <form method="post" th:action="@{/groups/update}" th:object="${group}">
+
+    <input type="number" th:field="*{id}" hidden/>
+    <!-- поле имени -->
+    <label>Group Name: </label>
+    <input type="text" th:field="*{groupName}" required minlength="1" maxlength="50"/>
+    <!-- кнопка сохранить -->
+    <button type="submit" class="btn btn-primary">Update</button>
+    <!-- кнопка отмены -->
+    <a th:href="@{/groups}" class="btn btn-danger">Cancel</a>
+  </form>
+</div>
+
+</body>
+</html>

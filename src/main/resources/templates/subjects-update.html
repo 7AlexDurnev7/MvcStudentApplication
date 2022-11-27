@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update subject</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+
+<div class="container-fluid text-center">
+  <h1>Update subject</h1>
+  <!-- форма изменения предмета -->
+  <form method="post" th:action="@{/subjects/update}" th:object="${subject}">
+    <!-- поле названия предмета -->
+    <label>
+      <input type="hidden" th:field="*{id}"/>
+    </label>
+    <label>Subject Name: </label>
+    <label>
+      <input type="text" th:field="*{subjectName}" required minlength="1" maxlength="50"/>
+    </label>
+    <!-- кнопка сохранить -->
+    <button type="submit" class="btn btn-success">Save</button>
+    <!-- кнопка отмены -->
+    <a th:href="@{/groups}" class="btn btn-danger">Cancel</a>
+  </form>
+
+</div>
+
+</body>
+</html>

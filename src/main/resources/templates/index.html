@@ -6,9 +6,10 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body>
+    <nav th:insert="/layout/layouts.html :: navs"></nav>
+
     <div class="container-fluid text-center">
   <h1>Welcome to Student App</h1>
-        <a th:href="@{/students}" class="header">Manage students</a>
     </div>
 
     <div>

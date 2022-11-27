@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body>
+<nav th:insert="/layout/layouts.html :: navs"></nav>
 
 <div class="container-fluid text-center">
     <!-- сообщение -->
@@ -13,13 +14,23 @@
         [[${message}]]
     </div>
    <!-- <a th:href="@{/students}" class="header">Manage students</a> -->
+    <!-- фильтр -->
+<!--    <div>  -->
+<!--        <form method="post" th:action="@{/students}" th:object="${containsFilter}">-->
+<!--        <input type="text" th:field="*{match}"/>-->
+<!--        <button>Find</button>  -->
+<!--        </form>-->
+<!--    </div>-->
     <!-- вывод списка студентов в виде таблицы + bootstrap -->
-    <table class="table table-bordered">  <!-- шапка таблицы -->
+
+    <!-- шапка таблицы -->
+    <table class="table table-bordered">
         <thead class="table-dark">
         <tr>
             <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
+            <th>Group</th>
             <th></th>
         </tr>
         </thead>
@@ -31,6 +42,8 @@
                 <td>[[${student.id}]]</td>
                 <td>[[${student.firstName}]]</td>
                 <td>[[${student.lastName}]]</td>
+                <td th:if="${student.group != null}" >[[${student.group.groupName}]]</td>
+                <td th:if="${student.group == null}" >NONE</td>
                 <!-- кнопка удаления -->
                 <td>
                     <a th:href="@{'/students/delete/' + ${student.id}}" class="btn btn-danger">
